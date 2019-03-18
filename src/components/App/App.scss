@@ -1,0 +1,24 @@
+.App {
+  height: 100vh;
+}
+
+h1 {
+  height: 55px;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.App--button {
+  height: 55px;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  height: calc(100vh - 110px);
+}
+
+.main--color-section {
+  width: 100%;
+  height: 100%;
+}
