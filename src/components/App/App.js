@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ColorSection } from '../ColorSection/ColorSection';
 import { Menu } from '../Menu/Menu';
 import { Modal } from '../Modal/Modal';
+import { fetchData } from '../../utils/api';
 
 export class App extends Component {
   constructor() {
@@ -10,12 +11,19 @@ export class App extends Component {
       colors: [],
       lockedColors: [],
       menuDisplayed: false,
-      modalDisplayed: false
+      modalDisplayed: false,
+      projects: []
     };
   }
 
   componentDidMount() {
     this.generateColors();
+    this.fetchProjects();
+  }
+
+  fetchProjects = async () => {
+    const projects = await fetchData('/api/v1/projects');
+    this.setState({ projects });
   }
 
   generateColors = () => {
@@ -71,11 +79,23 @@ export class App extends Component {
     this.setState({ menuDisplayed: !this.state.menuDisplayed });
   }
 
+  updateProjects = (projectName, palette) => {
+    let [...updatedProjects] = this.state.projects;
+    updatedProjects = updatedProjects.map(project => {
+      if (project.name === projectName) {
+        return { ...project, palettes: [...project.palettes, palette] }
+      }
+      return project;
+    })
+    this.setState({ projects: updatedProjects });
+  }
+
   render() {
-    const gridTemplateColumns = this.state.menuDisplayed ? '1fr 248px' : '1fr';
+    const { colors, projects, menuDisplayed, modalDisplayed } = this.state;
+    const gridTemplateColumns = menuDisplayed ? '1fr 248px' : '1fr';
     return (
       <div className="App">
-        {this.state.modalDisplayed && 
+        {modalDisplayed && 
           <div className="App--overlay" onClick={this.toggleModal}></div>}
         <h1 className="App--h1">palette picker</h1>
         <header>
@@ -86,7 +106,13 @@ export class App extends Component {
         </header>
         <main className="main" style={{ gridTemplateColumns }}>
           {this.renderColors()}
-          {this.state.modalDisplayed && <Modal />}
+          {modalDisplayed &&
+            <Modal 
+              colors={colors}
+              projects={projects} 
+              updateProjects={this.updateProjects}
+              toggleModal={this.toggleModal}
+            />}
         </main>
       </div>
     );
