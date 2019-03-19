@@ -7,8 +7,8 @@ export class Menu extends Component {
 
   render() {
     return (
-      <section key="menu" className="Menu">
-        <h2 className="h2">Projects</h2>
+      <section className="Menu">
+        <h2 className="Menu--h2">projects</h2>
         <button className="Menu--button" onClick={this.handleClick}>
           save palette
         </button>

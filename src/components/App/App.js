@@ -77,7 +77,7 @@ export class App extends Component {
       <div className="App">
         {this.state.modalDisplayed && 
           <div className="App--overlay" onClick={this.toggleModal}></div>}
-        <h1 className="h1">palette picker</h1>
+        <h1 className="App--h1">palette picker</h1>
         <header>
           <button onClick={this.generateColors} className="header--button">
             generate palette
