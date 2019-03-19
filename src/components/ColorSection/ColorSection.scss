@@ -56,3 +56,30 @@
   @extend .h3;
   color: #000000;
 }
+
+@media screen and (max-width: 958px) {
+  .h3 {
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .h3 {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-height: 720px) {
+  .section--locked {
+    background-size: 36px;  
+    background-position-y: 25%;
+  }
+  
+  .section--unlocked {
+    &:hover {
+      background-position-y: 25%;
+      background-size: 32px;
+    }
+  }
+}

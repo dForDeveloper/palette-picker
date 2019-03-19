@@ -48,11 +48,12 @@ export class App extends Component {
       );
     });
     if (menuDisplayed) {
-      sections.push(
+      return [
+        <div className="main--container" key="container">{sections}</div>,
         <section key="menu" className="section--menu">Menu</section>
-      );
+      ];
     }
-    return sections;
+    return <div className="main--container">{sections}</div>;
   }
 
   toggleLock = (lockedColors) => {
@@ -64,8 +65,7 @@ export class App extends Component {
   }
 
   render() {
-    const columnCount = this.state.menuDisplayed ? 6 : 5;
-    const gridStyle = { gridTemplateColumns: `repeat(${columnCount}, 1fr)` };
+    const gridTemplateColumns = this.state.menuDisplayed ? '1fr 248px' : '1fr';
     return (
       <div className="App">
         <h1 className="h1">palette picker</h1>
@@ -75,7 +75,9 @@ export class App extends Component {
           </button>
           <div className="header--menu" onClick={this.toggleMenu}></div>
         </header>
-        <main className="main" style={gridStyle}>{this.renderColors()}</main>
+        <main className="main" style={{ gridTemplateColumns }}>
+          {this.renderColors()}
+        </main>
       </div>
     );
   }
