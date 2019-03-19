@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { ColorSection } from '../ColorSection/ColorSection';
+import { connect } from 'react-redux';
+import { setColors } from '../../actions';
+import ColorSection from '../ColorSection/ColorSection';
 import { Menu } from '../Menu/Menu';
 import { Modal } from '../Modal/Modal';
 import { fetchData } from '../../utils/api';
+import PropTypes from 'prop-types';
 
 export class App extends Component {
   constructor() {
     super();
     this.state = {
-      colors: [],
-      lockedColors: [],
       menuDisplayed: false,
       modalDisplayed: false,
       projects: []
@@ -27,7 +28,7 @@ export class App extends Component {
   }
 
   generateColors = () => {
-    const { colors, lockedColors } = this.state;
+    const { colors, lockedColors } = this.props;
     const newColors = [];
     for (let i = 0; i < 5; i++) {
       if (lockedColors.includes(i)) {
@@ -41,17 +42,15 @@ export class App extends Component {
         newColors.push(newColor);
       }
     }
-    this.setState({ colors: newColors });
+    this.props.setColors(newColors);
   }
 
   renderColors = () => {
-    const { colors, lockedColors, menuDisplayed } = this.state; 
-    const sections = colors.map((color, index) => {
+    const { menuDisplayed } = this.state; 
+    const sections = this.props.colors.map((color, index) => {
       return (
         <ColorSection
           key={color}
-          colors={colors}
-          lockedColors={lockedColors}
           color={color}
           index={index}
           toggleLock={this.toggleLock}
@@ -65,10 +64,6 @@ export class App extends Component {
       ];
     }
     return <div className="main--container">{sections}</div>;
-  }
-
-  toggleLock = (lockedColors) => {
-    this.setState({ lockedColors });
   }
 
   toggleModal = () => {
@@ -91,7 +86,7 @@ export class App extends Component {
   }
 
   render() {
-    const { colors, projects, menuDisplayed, modalDisplayed } = this.state;
+    const { projects, menuDisplayed, modalDisplayed } = this.state;
     const gridTemplateColumns = menuDisplayed ? '1fr 248px' : '1fr';
     return (
       <div className="App">
@@ -108,7 +103,7 @@ export class App extends Component {
           {this.renderColors()}
           {modalDisplayed &&
             <Modal 
-              colors={colors}
+              colors={this.props.colors}
               projects={projects} 
               updateProjects={this.updateProjects}
               toggleModal={this.toggleModal}
@@ -117,4 +112,21 @@ export class App extends Component {
       </div>
     );
   }
+}
+
+export const mapStateToProps = (state) => ({
+  colors: state.colors,
+  lockedColors: state.lockedColors
+});
+
+export const mapDispatchToProps = (dispatch) => ({
+  setColors: (colors) => dispatch(setColors(colors))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+App.propTypes = {
+  colors: PropTypes.array,
+  lockedColors: PropTypes.array,
+  setColors: PropTypes.func
 }

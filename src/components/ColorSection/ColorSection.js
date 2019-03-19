@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setLockedColors } from '../../actions';
 import PropTypes from 'prop-types';
 
 export class ColorSection extends Component {
@@ -12,7 +14,7 @@ export class ColorSection extends Component {
     } else {
       newLockedColors = [...lockedColors, clickedIndex];
     }
-    this.props.toggleLock(newLockedColors);
+    this.props.setLockedColors(newLockedColors);
   }
 
   render() {
@@ -35,10 +37,21 @@ export class ColorSection extends Component {
   }
 }
 
+export const mapStateToProps = (state) => ({
+  colors: state.colors,
+  lockedColors: state.lockedColors
+});
+
+export const mapDispatchToProps = (dispatch) => ({
+  setLockedColors: (lockedColors) => dispatch(setLockedColors(lockedColors))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ColorSection);
+
 ColorSection.propTypes = {
   colors: PropTypes.array,
   lockedColors: PropTypes.array,
   color: PropTypes.string,
   index: PropTypes.number,
-  toggleLock: PropTypes.func
+  setLockedColors: PropTypes.func
 }
