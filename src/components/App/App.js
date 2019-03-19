@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ColorSection } from '../ColorSection/ColorSection';
 
 export class App extends Component {
   constructor() {
@@ -35,42 +36,27 @@ export class App extends Component {
   renderColors = () => {
     const { colors, lockedColors, menuDisplayed } = this.state; 
     const sections = colors.map((color, index) => {
-      const locked = lockedColors.includes(index);
-      const red = parseInt(color.slice(1, 3), 16);
-      const green = parseInt(color.slice(3, 5), 16);
-      const blue = parseInt(color.slice(5), 16);
-      const luma = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
       return (
-        <section
-          id={color}
-          className={`section--locked-${locked}-${luma < 128}`}
+        <ColorSection
           key={color}
-          style={{ backgroundColor: color }}
-          onClick={this.toggleLock}
-        >
-          <h3 className={`h3--dark-${luma < 128}`}>{color}</h3>
-        </section>
+          colors={colors}
+          lockedColors={lockedColors}
+          color={color}
+          index={index}
+          toggleLock={this.toggleLock}
+        />
       );
     });
     if (menuDisplayed) {
       sections.push(
-        <section key="menu" className="section--menu"></section>
+        <section key="menu" className="section--menu">Menu</section>
       );
     }
     return sections;
   }
 
-  toggleLock = (event) => {
-    let newLockedColors = [];
-    const { id } = event.target;
-    const { colors, lockedColors } = this.state; 
-    const clickedIndex = colors.findIndex(color => color === id);
-    if (lockedColors.includes(clickedIndex)) {
-      newLockedColors = lockedColors.filter(index => index !== clickedIndex);
-    } else {
-      newLockedColors = [...lockedColors, clickedIndex];
-    }
-    this.setState({ lockedColors: newLockedColors });
+  toggleLock = (lockedColors) => {
+    this.setState({ lockedColors });
   }
 
   toggleMenu = () => {

@@ -57,67 +57,10 @@
   height: 100%;
   cursor: pointer;
   display: grid;
-  align-content: end;
-}
-
-.section--locked {
-  @extend .section;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.section--unlocked {
-  @extend .section;
-  &:hover {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 44px;
-  }
-}
-
-.section--locked-true-true {
-  @extend .section--locked;
-  background-image: url(../icons/lockeddark.svg);
-}
-.section--locked-true-false {
-  @extend .section--locked;
-  background-image: url(../icons/lockedlight.svg);
-}
-
-.section--locked-false-true {
-  @extend .section--unlocked;
-  &:hover {
-    background-image: url(../icons/unlockeddark.svg);
-  }
-}
-
-.section--locked-false-false {
-  @extend .section--unlocked;
-  &:hover {
-    background-image: url(../icons/unlockedlight.svg);
-  }
 }
 
 .section--menu {
   width: 100%;
-  background-color: #333333;
-}
-
-.h3 {
-  opacity: .3;
-  text-transform: uppercase;
-  margin: auto;
-  font-size: 2rem;
-  padding-bottom: 2rem;
-  font-weight: 400;
-}
-
-.h3--dark-true {
-  @extend .h3;
-  color: #ffffff;
-}
-
-.h3--dark-false {
-  @extend .h3;
-  color: #000000;
+  background-color: #0b0b0e;
+  color: #9facbd;
 }
