@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { ColorSection } from '../ColorSection/ColorSection';
+import { Menu } from '../Menu/Menu';
+import { Modal } from '../Modal/Modal';
 
 export class App extends Component {
   constructor() {
@@ -7,7 +9,8 @@ export class App extends Component {
     this.state = {
       colors: [],
       lockedColors: [],
-      menuDisplayed: false
+      menuDisplayed: false,
+      modalDisplayed: false
     };
   }
 
@@ -50,7 +53,7 @@ export class App extends Component {
     if (menuDisplayed) {
       return [
         <div className="main--container" key="container">{sections}</div>,
-        <section key="menu" className="section--menu">Menu</section>
+        <Menu key='menu' toggleModal={this.toggleModal}/>
       ];
     }
     return <div className="main--container">{sections}</div>;
@@ -58,6 +61,10 @@ export class App extends Component {
 
   toggleLock = (lockedColors) => {
     this.setState({ lockedColors });
+  }
+
+  toggleModal = () => {
+    this.setState({ modalDisplayed: !this.state.modalDisplayed });
   }
 
   toggleMenu = () => {
@@ -68,6 +75,8 @@ export class App extends Component {
     const gridTemplateColumns = this.state.menuDisplayed ? '1fr 248px' : '1fr';
     return (
       <div className="App">
+        {this.state.modalDisplayed && 
+          <div className="App--overlay" onClick={this.toggleModal}></div>}
         <h1 className="h1">palette picker</h1>
         <header>
           <button onClick={this.generateColors} className="header--button">
@@ -77,6 +86,7 @@ export class App extends Component {
         </header>
         <main className="main" style={{ gridTemplateColumns }}>
           {this.renderColors()}
+          {this.state.modalDisplayed && <Modal />}
         </main>
       </div>
     );
