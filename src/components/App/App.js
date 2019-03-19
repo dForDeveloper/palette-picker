@@ -5,7 +5,8 @@ export class App extends Component {
     super();
     this.state = {
       colors: [],
-      lockedColors: []
+      lockedColors: [],
+      menuDisplayed: false
     };
   }
 
@@ -32,8 +33,8 @@ export class App extends Component {
   }
 
   renderColors = () => {
-    const { colors, lockedColors } = this.state; 
-    return colors.map((color, index) => {
+    const { colors, lockedColors, menuDisplayed } = this.state; 
+    const sections = colors.map((color, index) => {
       const locked = lockedColors.includes(index);
       const red = parseInt(color.slice(1, 3), 16);
       const green = parseInt(color.slice(3, 5), 16);
@@ -45,15 +46,21 @@ export class App extends Component {
           className={`section--locked-${locked}-${luma < 128}`}
           key={color}
           style={{ backgroundColor: color }}
-          onClick={this.handleClick}
+          onClick={this.toggleLock}
         >
           <h3 className={`h3--dark-${luma < 128}`}>{color}</h3>
         </section>
       );
     });
+    if (menuDisplayed) {
+      sections.push(
+        <section key="menu" className="section--menu"></section>
+      );
+    }
+    return sections;
   }
 
-  handleClick = (event) => {
+  toggleLock = (event) => {
     let newLockedColors = [];
     const { id } = event.target;
     const { colors, lockedColors } = this.state; 
@@ -66,14 +73,23 @@ export class App extends Component {
     this.setState({ lockedColors: newLockedColors });
   }
 
+  toggleMenu = () => {
+    this.setState({ menuDisplayed: !this.state.menuDisplayed });
+  }
+
   render() {
+    const columnCount = this.state.menuDisplayed ? 6 : 5;
+    const gridStyle = { gridTemplateColumns: `repeat(${columnCount}, 1fr)` };
     return (
       <div className="App">
-        <h1 className="h1">Palette Picker</h1>
-        <button onClick={this.generateColors} className="App--button">
-          Generate Palette
-        </button>
-        <main className="main">{this.renderColors()}</main>
+        <h1 className="h1">palette picker</h1>
+        <header>
+          <button onClick={this.generateColors} className="header--button">
+            generate palette
+          </button>
+          <div className="header--menu" onClick={this.toggleMenu}></div>
+        </header>
+        <main className="main" style={gridStyle}>{this.renderColors()}</main>
       </div>
     );
   }

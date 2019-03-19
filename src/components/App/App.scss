@@ -8,25 +8,47 @@
   text-align: center;
   margin: 0;
   line-height: 3rem;
+  color: #0facf3;
+  font-weight: 900;
 }
 
-.App--button {
-  height: 55px;
+.header {
+  position: relative;
+}
+
+.header--button {
+  height: 35px;
   background-color: #ffffff;
   border: none;
   outline: none;
   cursor: pointer;
-  width: 100%;
+  width: 160px;
+  margin: 10px auto;
+  display: block;
   color: #333333;
+  font-size: 1.2rem;
 
   &:hover {
-    color: #000000;
+    color: #0facf3;
+  }
+}
+
+.header--menu {
+  position: absolute;
+  top: 65px;
+  right: 12px;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  background-image: url('../icons/menu.svg');
+  
+  &:hover {
+    background-image: url('../icons/menuhover.svg');
   }
 }
 
 .main {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
   height: calc(100vh - 110px);
 }
 
@@ -76,12 +98,18 @@
   }
 }
 
+.section--menu {
+  width: 100%;
+  background-color: #333333;
+}
+
 .h3 {
   opacity: .3;
   text-transform: uppercase;
   margin: auto;
   font-size: 2rem;
   padding-bottom: 2rem;
+  font-weight: 400;
 }
 
 .h3--dark-true {
