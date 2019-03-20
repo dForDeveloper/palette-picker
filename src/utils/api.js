@@ -1,10 +1,10 @@
 export const fetchData = async (path, options = {}) => {
+  const url = 'http://localhost:3001';
   try {
-    const url = 'http://localhost:3001';
     const response = await fetch(url + path, options);
     return await response.json();
   } catch (error) {
-    console.log(error.message);
+    throw Error(`Error fetching from ${url + path}`);
   }
 }
 
