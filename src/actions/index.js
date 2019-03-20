@@ -22,3 +22,9 @@ export const setError = (message) => ({
   type: 'SET_ERROR',
   message
 });
+
+export const setPalettes = (id, palettes) => ({
+  type: 'SET_PALETTES',
+  id,
+  palettes
+});
