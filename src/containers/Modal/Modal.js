@@ -4,18 +4,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 export class Modal extends Component {
-  constructor() {
-    super();
-    this.state = {
-      projectName: '',
-      paletteName: ''
-    }
-  }
+  state = {
+    projectName: '',
+    paletteName: ''
+  };
 
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  }
+  };
 
   handleSubmit = async (event) => {
     event.preventDefault();
@@ -23,7 +20,7 @@ export class Modal extends Component {
     const { projects, colors, saveNewPalette } = this.props;
     await saveNewPalette(projectName, paletteName, projects, colors);
     this.props.toggleModal();
-  }
+  };
 
   render() {
     return (
@@ -71,4 +68,4 @@ Modal.propTypes = {
   projects: PropTypes.array,
   saveNewPalette: PropTypes.func,
   toggleModal: PropTypes.func
-}
+};
