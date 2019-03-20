@@ -65,7 +65,7 @@
   position: relative;
 }
 
-.main--container {
+.main--div {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
@@ -78,7 +78,7 @@
 }
 
 @media screen and (max-width: 958px) {
-  .main--container {
+  .main--div {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, 1fr);
