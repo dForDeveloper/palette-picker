@@ -3,7 +3,7 @@
   background-color: #0b0b0e;
   color: #9facbd;
   display: grid;
-  grid-template-rows: 1fr calc(4rem + 2px);
+  grid-template-rows: 48px 1fr calc(4rem + 2px);
 }
 
 .Menu--h2 {
@@ -11,6 +11,12 @@
   font-weight: 400;
   font-size: 1.3rem;
   margin-top: 8px;
+}
+
+.Menu--ul-projects {
+  list-style-type: none;
+  margin-left: 8px;
+  overflow-y: auto;
 }
 
 .Menu--button {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ColorSection from '../ColorSection/ColorSection';
 import Modal from '../Modal/Modal';
-import { Menu } from '../../components/Menu/Menu';
+import Menu from '../../containers/Menu/Menu';
 import { setColors } from '../../actions';
 import { fetchProjects } from '../../thunks/fetchProjects';
 import PropTypes from 'prop-types';
@@ -49,12 +49,12 @@ export class App extends Component {
     });
   };
 
-  toggleModal = () => {
-    this.setState({ modalDisplayed: !this.state.modalDisplayed });
-  };
-
   toggleMenu = () => {
     this.setState({ menuDisplayed: !this.state.menuDisplayed });
+  };
+  
+  toggleModal = () => {
+    this.setState({ modalDisplayed: !this.state.modalDisplayed });
   };
 
   render() {
