@@ -1,28 +1,28 @@
 .Menu--list-item {
-  cursor: pointer;
   margin-bottom: 8px;
 }
 
-.Menu--icon {
+.Menu--icon-folder {
   vertical-align: middle;
   margin-right: 8px;
+  cursor: pointer;
 }
 
-.Menu--ul-palettes {
-  list-style-type: none;
-  margin-left: 40px;
-  margin-right: 16px;
+.Menu--icon-edit {
+  vertical-align: middle;
+  cursor: pointer;
+  height: 20px;
+  float: right;
 }
 
-.Menu--palette-span {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  border: 1px solid #ffffff;
-  margin-top: 2px;
+.Menu--icon-edit-light {
+  @extend .Menu--icon-edit;
+  height: 18px;
 }
 
-.Menu--palette-square {
-  width: 100%;
-  height: 16px;
-  display: inline-block;
+.Menu--project-name {
+  @extend .Menu--text;
+  width: 168px;
+  cursor: pointer;
+  color: #000000;
 }

@@ -3,20 +3,36 @@
   background-color: #0b0b0e;
   color: #9facbd;
   display: grid;
-  grid-template-rows: 48px 1fr calc(4rem + 2px);
+  grid-template-rows: 32px 1fr calc(4rem + 2px);
+  position: relative;
+}
+
+.Menu--text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 200px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.Menu--header {
+  display: grid;
+  grid-template-columns: 1fr 32px;
+  cursor: pointer;
 }
 
 .Menu--h2 {
-  text-align: center;
+  @extend .Menu--text;
   font-weight: 400;
-  font-size: 1.3rem;
-  margin-top: 8px;
+  font-size: 1.1rem;
+  margin: 8px;
+  display: inline-block;
 }
 
-.Menu--ul-projects {
+.Menu--ul-palettes {
   list-style-type: none;
-  margin-left: 8px;
-  overflow-y: auto;
+  margin: 8px;
 }
 
 .Menu--button {
@@ -26,4 +42,21 @@
   border-radius: 2px;
   outline: none;
   cursor: pointer;
+}
+
+.Menu--icon-arrow {
+  vertical-align: middle;
+  width: 32px;
+  padding-top: 2px;
+}
+
+.Menu--drop-down {
+  position: absolute;
+  background-color: #ffffff;
+  top: 32px;
+  width: 232px;
+  left: 8px;
+  list-style-type: none;
+  border-radius: 8px;
+  padding: 12px 4px 8px;
 }

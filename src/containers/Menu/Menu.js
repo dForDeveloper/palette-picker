@@ -3,53 +3,88 @@ import { connect } from 'react-redux';
 import { ProjectListItem } from '../../components/ProjectListItem/ProjectListItem';
 import { getPalettes } from '../../thunks/getPalettes';
 import PropTypes from 'prop-types';
+import dropdownarrow from '../../icons/dropdownarrow.svg';
+import PaletteListItem from '../PaletteListItem/PaletteListItem';
 
 export class Menu extends Component {
   state = {
-    openedFolders: []
+    activeProjectID: null,
+    dropDownDisplayed: false,
+    menuHeader: 'all projects'
   };
 
-  handleClick = () => {
+  toggleModal = () => {
     this.props.toggleModal();
-    this.setState({ openedFolders: [] });
+    this.setState({
+      activeProjectID: null,
+      menuHeader: 'all projects'
+    });
   }
 
-  renderProjectFolders = () => {
-    const { openedFolders } = this.state;
+  renderPaletteList = () => {
+    const { projects } = this.props;
+    const { activeProjectID } = this.state;
+    const activeProject = projects.find(project => {
+      return project.id === parseInt(activeProjectID);
+    });
+    if (activeProject) {
+      return activeProject.palettes.map(palette => {
+        return <PaletteListItem key={palette.created_at} {...palette} />
+      });
+    }
+  };
+
+  renderProjectList = () => {
     return this.props.projects.map(project => {
-      const opened = openedFolders.includes(project.name);
       return (
         <ProjectListItem
           key={project.name}
           {...project}
-          opened={opened}
-          toggleOpen={this.toggleOpen}
+          toggleDropDown={this.toggleDropDown}
           getPalettes={this.props.getPalettes}
+          setActiveProject={this.setActiveProject}
         />
       );
     });
   };
 
-  toggleOpen = (projectName, isOpen) => {
-    let [...newFolders] = this.state.openedFolders;
-    if (isOpen) {
-      newFolders.push(projectName);
-    } else {
-      newFolders = newFolders.filter(project =>  project !== projectName);
-    }
-    this.setState({ openedFolders: newFolders });
+  toggleDropDown = () => {
+    const { dropDownDisplayed } = this.state;
+    this.setState({ dropDownDisplayed: !dropDownDisplayed });
+  }
+
+  setActiveProject = (id) => {
+    const { projects } = this.props;
+    const newHeader = projects.find(project => {
+      return project.id === parseInt(id);
+    }).name;
+    this.setState({
+      activeProjectID: id ,
+      menuHeader: newHeader
+    });
   }
 
   render() {
+    const { dropDownDisplayed, menuHeader } = this.state;
     return (
       <section className="Menu">
-        <h2 className="Menu--h2">projects</h2>
-        <ul className="Menu--ul-projects">
-          {this.renderProjectFolders()}
-        </ul>
-        <button className="Menu--button" onClick={this.handleClick}>
+        <header className="Menu--header" onClick={this.toggleDropDown}>
+          <h2 className="Menu--h2">{menuHeader}</h2>
+          <img
+            src={dropdownarrow}
+            className="Menu--icon-arrow"
+            alt="drop down arrow"
+            // onClick={this.toggleDropDown}
+          />
+        </header>
+        <ul className="Menu--ul-palettes">{this.renderPaletteList()}</ul>
+        <button className="Menu--button" onClick={this.toggleModal}>
           save palette
         </button>
+        {dropDownDisplayed && 
+          <ul className="Menu--drop-down">
+            {this.renderProjectList()}
+          </ul>}
       </section>
     );
   }
