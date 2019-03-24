@@ -60,6 +60,7 @@ export class App extends Component {
   render() {
     const { menuDisplayed } = this.state;
     const { modal } = this.props;
+    const { modalType } = modal;
     const gridTemplateColumns = menuDisplayed ? '1fr 248px' : '1fr';
     return (
       <div className="App">
@@ -73,8 +74,8 @@ export class App extends Component {
         <main className="main" style={{ gridTemplateColumns }}>
           <div className="main--div">{this.renderColors()}</div>
           {menuDisplayed && <Menu key="menu" />}
-          {modal.name === 'save' && <SaveModal />}
-          {(modal.name === 'project' || modal.name === 'palette') && 
+          {modalType === 'save' && <SaveModal />}
+          {(modalType === 'project' || modalType === 'palette') && 
             <EditModal {...modal} />}
         </main>
         {modal.isDisplayed && (

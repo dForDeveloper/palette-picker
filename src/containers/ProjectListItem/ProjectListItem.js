@@ -42,8 +42,8 @@ export class ProjectListItem extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  setModal: (isDisplayed, type, name) => {
-    dispatch(setModal(isDisplayed, type, name))
+  setModal: (isDisplayed, type, text) => {
+    dispatch(setModal(isDisplayed, type, text))
   }
 });
 

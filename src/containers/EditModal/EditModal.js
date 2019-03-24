@@ -3,32 +3,39 @@ import PropTypes from 'prop-types';
 
 export class EditModal extends Component {
   state = {
-    name: '',
+    textInput: '',
   };
 
   componentDidMount() {
-    this.setState({ name: this.props.text });
+    this.setState({ textInput: this.props.text });
   }
 
   handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    this.setState({ textInput: event.target.value });
   };
+
+  handleClick = () => {
+
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    // const { modalType } = this.props;
+  }
 
   render() {
     return (
       <form className="Modal" onSubmit={this.handleSubmit}>
-        <h4 className="Modal--h4">{`edit ${this.props.name}`}</h4>
+        <h4 className="Modal--h4">{`edit ${this.props.modalType}`}</h4>
         <input
           className="Modal--input"
-          name="name"
-          placeholder="project name"
-          value={this.state.name}
+          placeholder={`${this.props.modalType} name`}
+          value={this.state.textInput}
           onChange={this.handleChange}
           required 
         />
         <input type="submit" value="save" className="Modal--button" />
-        <button className="Modal--button">
+        <button className="Modal--button" onClick={this.handleClick}>
           delete
         </button>
       </form>

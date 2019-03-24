@@ -29,9 +29,9 @@ export const setPalettes = (id, palettes) => ({
   palettes
 });
 
-export const setModal = (isDisplayed, name = null, text = null) => ({
+export const setModal = (isDisplayed, modalType = null, text = null) => ({
   type: 'SET_MODAL',
   isDisplayed,
-  name,
+  modalType,
   text
 });

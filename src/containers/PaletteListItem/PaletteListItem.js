@@ -52,8 +52,8 @@ export class PaletteListItem extends Component {
 export const mapDispatchToProps = (dispatch) => ({
   setColors: (colors) => dispatch(setColors(colors)),
   setLockedColors: (lockedColors) => dispatch(setLockedColors(lockedColors)),
-  setModal: (isDisplayed, type, name) => {
-    dispatch(setModal(isDisplayed, type, name))
+  setModal: (isDisplayed, type, text) => {
+    dispatch(setModal(isDisplayed, type, text))
   }
 });
 
