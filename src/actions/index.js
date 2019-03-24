@@ -28,3 +28,10 @@ export const setPalettes = (id, palettes) => ({
   id,
   palettes
 });
+
+export const setModal = (isDisplayed, name = null, text = null) => ({
+  type: 'SET_MODAL',
+  isDisplayed,
+  name,
+  text
+});
