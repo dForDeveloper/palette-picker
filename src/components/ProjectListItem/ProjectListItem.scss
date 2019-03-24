@@ -1,5 +1,12 @@
 .Menu--list-item {
   margin-bottom: 8px;
+  background-color: #ffffff;
+  color: #000000;
+  transition: all 0.2s ease;
+  &:hover {
+    background-color: #0facf3;
+    color: #ffffff;
+  }
 }
 
 .Menu--icon-folder {
@@ -13,16 +20,18 @@
   cursor: pointer;
   height: 20px;
   float: right;
+  margin-top: 2px;
 }
 
 .Menu--icon-edit-light {
   @extend .Menu--icon-edit;
   height: 18px;
+  margin-top: 0;
 }
 
 .Menu--project-name {
   @extend .Menu--text;
+  height: 19px;
   width: 168px;
   cursor: pointer;
-  color: #000000;
 }

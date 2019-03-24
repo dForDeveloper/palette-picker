@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ColorSection from '../ColorSection/ColorSection';
-import Modal from '../Modal/Modal';
+import SaveModal from '../SaveModal/SaveModal';
 import Menu from '../../containers/Menu/Menu';
 import { setColors } from '../../actions';
 import { fetchProjects } from '../../thunks/fetchProjects';
@@ -72,7 +72,7 @@ export class App extends Component {
         <main className="main" style={{ gridTemplateColumns }}>
           <div className="main--div">{this.renderColors()}</div>
           {menuDisplayed && <Menu key="menu" toggleModal={this.toggleModal} />}
-          {modalDisplayed && <Modal toggleModal={this.toggleModal} />}
+          {modalDisplayed && <SaveModal toggleModal={this.toggleModal} />}
         </main>
         {modalDisplayed && (
           <div className="App--overlay" onClick={this.toggleModal} />

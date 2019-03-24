@@ -1,3 +1,10 @@
+.section {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: grid;
+}
+
 .section--locked {
   @extend .section;
   align-content: end;

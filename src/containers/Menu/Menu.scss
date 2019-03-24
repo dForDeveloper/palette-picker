@@ -3,7 +3,7 @@
   background-color: #0b0b0e;
   color: #9facbd;
   display: grid;
-  grid-template-rows: 32px 1fr calc(4rem + 2px);
+  grid-template-rows: 36px 1fr calc(4rem + 2px);
   position: relative;
 }
 
@@ -19,7 +19,13 @@
 .Menu--header {
   display: grid;
   grid-template-columns: 1fr 32px;
+  position: relative;
   cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    color: #ffffff;
+  }
 }
 
 .Menu--h2 {
@@ -39,21 +45,41 @@
   height: 2rem;
   margin: 0 auto calc(2rem + 2px);
   padding: 0 16px 2px;
-  border-radius: 2px;
+  border-radius: 4px;
+  border: none;
   outline: none;
   cursor: pointer;
+  background-color: #0facf3;
+  color: #ffffff;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #10a5e8;
+  }
 }
 
 .Menu--icon-arrow {
   vertical-align: middle;
-  width: 32px;
-  padding-top: 2px;
+  position: absolute;
+  width: 244px;
+  margin-top: 2px;
+  top: 0;
+  right: 4px;
+  height: 32px;
+  background-image: url('../icons/dropdownarrowdark.svg');
+  background-position: right;
+  background-repeat: no-repeat;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-image: url('../icons/dropdownarrowlight.svg');
+  }
 }
 
 .Menu--drop-down {
   position: absolute;
   background-color: #ffffff;
-  top: 32px;
+  top: 36px;
   width: 232px;
   left: 8px;
   list-style-type: none;

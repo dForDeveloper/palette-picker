@@ -42,9 +42,7 @@ export class Modal extends Component {
           onChange={this.handleChange}
           required
         />
-        <button className="Modal--button">
-          save
-        </button>
+        <input type="submit" value="save" className="Modal--button" />
       </form>
     );
   }

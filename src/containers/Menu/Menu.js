@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { ProjectListItem } from '../../components/ProjectListItem/ProjectListItem';
 import { getPalettes } from '../../thunks/getPalettes';
 import PropTypes from 'prop-types';
-import dropdownarrow from '../../icons/dropdownarrow.svg';
 import PaletteListItem from '../PaletteListItem/PaletteListItem';
 
 export class Menu extends Component {
@@ -70,12 +69,7 @@ export class Menu extends Component {
       <section className="Menu">
         <header className="Menu--header" onClick={this.toggleDropDown}>
           <h2 className="Menu--h2">{menuHeader}</h2>
-          <img
-            src={dropdownarrow}
-            className="Menu--icon-arrow"
-            alt="drop down arrow"
-            // onClick={this.toggleDropDown}
-          />
+          <div className="Menu--icon-arrow"/>
         </header>
         <ul className="Menu--ul-palettes">{this.renderPaletteList()}</ul>
         <button className="Menu--button" onClick={this.toggleModal}>
