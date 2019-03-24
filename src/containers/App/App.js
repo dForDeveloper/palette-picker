@@ -25,11 +25,7 @@ export class App extends Component {
       if (lockedColors.includes(i)) {
         newColors.push(colors[i]);
       } else {
-        let newColor = '#';
-        for (let j = 0; j < 3; j++) {
-          const num = Math.floor(Math.random() * 256);
-          newColor += num < 16 ? `0${num.toString(16)}` : num.toString(16);
-        }
+        const newColor = '#' + Math.random().toString(16).slice(2, 8);
         newColors.push(newColor);
       }
     }
