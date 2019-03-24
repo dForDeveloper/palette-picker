@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { patchProject } from '../../thunks/patchProject';
+import { patchPalette } from '../../thunks/patchPalette';
+import { deleteProject } from '../../thunks/deleteProject';
+import { deletePalette } from '../../thunks/deletePalette';
 
 export class EditModal extends Component {
   state = {
@@ -54,9 +59,22 @@ export class EditModal extends Component {
   }
 }
 
+export const mapDispatchToProps = (dispatch) => ({
+  patchProject: () => dispatch(patchProject()),
+  patchPalette: () => dispatch(patchPalette()),
+  deleteProject: () => dispatch(deleteProject()),
+  deletePalette: () => dispatch(deletePalette())
+});
+
+export default connect(null, mapDispatchToProps)(EditModal);
+
 EditModal.propTypes = {
   isDisplayed: PropTypes.bool,
   name: PropTypes.string,
   text: PropTypes.string,
-  id: PropTypes.number
-}
+  id: PropTypes.number,
+  patchProject: PropTypes.func,
+  patchPalette: PropTypes.func,
+  deleteProject: PropTypes.func,
+  deletePalette: PropTypes.func,
+};

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ColorSection from '../ColorSection/ColorSection';
 import SaveModal from '../SaveModal/SaveModal';
-import { EditModal } from '../EditModal/EditModal';
+import EditModal from '../EditModal/EditModal';
 import Menu from '../../containers/Menu/Menu';
 import { getProjects } from '../../thunks/getProjects';
 import PropTypes from 'prop-types';
