@@ -9,7 +9,7 @@ import { getPalettes } from '../../thunks/getPalettes';
 export class ProjectListItem extends Component {
   toggleOpen = async () => {
     const { palettes, id } = this.props;
-    if (!palettes) await this.props.getPalettes(id);
+    if (!palettes[id]) await this.props.getPalettes(id);
     this.props.setActiveProject(id)
     this.props.toggleDropDown();
   };
@@ -41,19 +41,23 @@ export class ProjectListItem extends Component {
   }
 }
 
+export const mapStateToProps = (state) => ({
+  palettes: state.palettes
+});
+
 export const mapDispatchToProps = (dispatch) => ({
   getPalettes: (id) => dispatch(getPalettes(id)),
   setModal: (isDisplayed, modalType, currentName, id) => {
     dispatch(setModal(isDisplayed, modalType, currentName, id))
-  },
-
+  }
 });
 
-export default connect(null, mapDispatchToProps)(ProjectListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectListItem);
 
 ProjectListItem.propTypes = {
   id: PropTypes.number,
   name: PropTypes.string,
+  palettes: PropTypes.object,
   getPalettes: PropTypes.func,
   setModal: PropTypes.func
 };
