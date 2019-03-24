@@ -33,13 +33,15 @@ export const setModal = (
   isDisplayed,
   modalType = null,
   currentName = null,
-  id = null
+  projectID = null,
+  paletteID = null
 ) => ({
   type: 'SET_MODAL',
   isDisplayed,
   modalType,
   currentName,
-  id
+  projectID,
+  paletteID
 });
 
 export const removeProject = (id) => ({

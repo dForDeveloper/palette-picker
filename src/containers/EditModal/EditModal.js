@@ -31,11 +31,11 @@ export class EditModal extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { editedName } = this.state;
-    const { modalType, id } = this.props;
+    const { modalType, projectID, paletteID } = this.props;
     if (modalType === 'project') {
-      this.props.patchProject(id, editedName);
+      this.props.patchProject(projectID, editedName);
     } else if (modalType === 'palette') {
-      this.props.patchPalette(id, editedName);
+      this.props.patchPalette(projectID, paletteID, editedName);
     }
   }
 
@@ -61,8 +61,12 @@ export class EditModal extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  patchProject: (id, editedName) => dispatch(patchProject(id, editedName)),
-  patchPalette: (id, editedName) => dispatch(patchPalette(id, editedName)),
+  patchProject: (projectID, editedName) => {
+    dispatch(patchProject(projectID, editedName))
+  },
+  patchPalette: (projectID, paletteID, editedName) => {
+    dispatch(patchPalette(projectID, paletteID, editedName))
+  },
   deleteProject: (id) => dispatch(deleteProject(id)),
   deletePalette: (id) => dispatch(deletePalette(id))
 });
@@ -73,7 +77,8 @@ EditModal.propTypes = {
   isDisplayed: PropTypes.bool,
   name: PropTypes.string,
   text: PropTypes.string,
-  id: PropTypes.number,
+  projectID: PropTypes.number,
+  paletteID: PropTypes.number,
   patchProject: PropTypes.func,
   patchPalette: PropTypes.func,
   deleteProject: PropTypes.func,

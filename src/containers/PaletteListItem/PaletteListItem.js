@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 
 export class PaletteListItem extends Component {
   setModal = () => {
-    const { name, id, setModal } = this.props;
-    setModal(true, 'palette', name, id);
+    const { name, project_id, id, setModal } = this.props;
+    setModal(true, 'palette', name, project_id, id);
   }
 
   renderPaletteRectangle = (colors) => {
@@ -51,8 +51,8 @@ export class PaletteListItem extends Component {
 export const mapDispatchToProps = (dispatch) => ({
   setColors: (colors) => dispatch(setColors(colors)),
   setLockedColors: (lockedColors) => dispatch(setLockedColors(lockedColors)),
-  setModal: (isDisplayed, modalType, currentName, id) => {
-    dispatch(setModal(isDisplayed, modalType, currentName, id))
+  setModal: (isDisplayed, modalType, currentName, projectID, id) => {
+    dispatch(setModal(isDisplayed, modalType, currentName, projectID, id))
   }
 });
 
