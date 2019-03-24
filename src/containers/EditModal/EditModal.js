@@ -31,11 +31,11 @@ export class EditModal extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { editedName } = this.state;
-    const { modalType } = this.props;
+    const { modalType, id } = this.props;
     if (modalType === 'project') {
-      this.props.patchProject(editedName);
+      this.props.patchProject(id, editedName);
     } else if (modalType === 'palette') {
-      this.props.patchPalette(editedName);
+      this.props.patchPalette(id, editedName);
     }
   }
 
@@ -48,6 +48,7 @@ export class EditModal extends Component {
           placeholder={`${this.props.modalType} name`}
           value={this.state.editedName}
           onChange={this.handleChange}
+          autoFocus={true}
           required 
         />
         <input type="submit" value="save" className="Modal--button" />
@@ -60,10 +61,10 @@ export class EditModal extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  patchProject: () => dispatch(patchProject()),
-  patchPalette: () => dispatch(patchPalette()),
-  deleteProject: () => dispatch(deleteProject()),
-  deletePalette: () => dispatch(deletePalette())
+  patchProject: (id, editedName) => dispatch(patchProject(id, editedName)),
+  patchPalette: (id, editedName) => dispatch(patchPalette(id, editedName)),
+  deleteProject: (id) => dispatch(deleteProject(id)),
+  deletePalette: (id) => dispatch(deletePalette(id))
 });
 
 export default connect(null, mapDispatchToProps)(EditModal);
