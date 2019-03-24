@@ -1,5 +1,5 @@
 import { setError } from '../actions';
-import { fetchProjects } from './fetchProjects';
+import { getProjects } from './getProjects';
 import { fetchData, createOptions } from '../utils/api';
 
 export const postPalette = (projectID, name, colors) => {
@@ -18,7 +18,7 @@ export const postPalette = (projectID, name, colors) => {
       };
       const options = createOptions('POST', palette);
       await fetchData('/api/v1/palettes', options);
-      await dispatch(fetchProjects());
+      await dispatch(getProjects());
     } catch (error) {
       dispatch(setError('Error adding palette: ' + error.message));
     }

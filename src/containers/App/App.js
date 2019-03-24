@@ -4,7 +4,7 @@ import ColorSection from '../ColorSection/ColorSection';
 import SaveModal from '../SaveModal/SaveModal';
 import { EditModal } from '../EditModal/EditModal';
 import Menu from '../../containers/Menu/Menu';
-import { fetchProjects } from '../../thunks/fetchProjects';
+import { getProjects } from '../../thunks/getProjects';
 import PropTypes from 'prop-types';
 import { setColors, setModal } from '../../actions';
 
@@ -15,7 +15,7 @@ export class App extends Component {
 
   componentDidMount() {
     this.generateColors();
-    this.props.fetchProjects();
+    this.props.getProjects();
   }
 
   generateColors = () => {
@@ -95,7 +95,7 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = dispatch => ({
   setColors: colors => dispatch(setColors(colors)),
-  fetchProjects: () => dispatch(fetchProjects()),
+  getProjects: () => dispatch(getProjects()),
   setModal: (isDisplayed) => dispatch(setModal(isDisplayed))
 });
 
@@ -108,5 +108,5 @@ App.propTypes = {
   modal: PropTypes.object,
   setColors: PropTypes.func,
   setModal: PropTypes.func,
-  fetchProjects: PropTypes.func
+  getProjects: PropTypes.func
 };
