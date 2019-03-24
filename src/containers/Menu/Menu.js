@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProjectListItem from '..//ProjectListItem/ProjectListItem';
 import { setModal } from '../../actions';
-import { getPalettes } from '../../thunks/getPalettes';
 import PropTypes from 'prop-types';
 import PaletteListItem from '../PaletteListItem/PaletteListItem';
 
@@ -15,20 +14,13 @@ export class Menu extends Component {
 
   toggleModal = () => {
     this.props.setModal(true, 'save');
-    this.setState({
-      activeProjectID: null,
-      menuHeader: 'all projects'
-    });
   }
 
   renderPaletteList = () => {
-    const { projects } = this.props;
+    const { palettes } = this.props;
     const { activeProjectID } = this.state;
-    const activeProject = projects.find(project => {
-      return project.id === parseInt(activeProjectID);
-    });
-    if (activeProject) {
-      return activeProject.palettes.map(palette => {
+    if (activeProjectID) {
+      return palettes[activeProjectID].map(palette => {
         return <PaletteListItem key={palette.created_at} {...palette} />
       });
     }
@@ -41,7 +33,6 @@ export class Menu extends Component {
           key={project.name}
           {...project}
           toggleDropDown={this.toggleDropDown}
-          getPalettes={this.props.getPalettes}
           setActiveProject={this.setActiveProject}
         />
       );
@@ -86,11 +77,11 @@ export class Menu extends Component {
 }
 
 export const mapStateToProps = (state) => ({
-  projects: state.projects
+  projects: state.projects,
+  palettes: state.palettes
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  getPalettes: (id) => dispatch(getPalettes(id)),
   setModal: (isDisplayed, type) => dispatch(setModal(isDisplayed, type))
 });
 
@@ -98,6 +89,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(Menu);
 
 Menu.propTypes = {
   projects: PropTypes.array,
-  getPalettes: PropTypes.func,
+  palettes: PropTypes.object,
   setModal: PropTypes.func
 };

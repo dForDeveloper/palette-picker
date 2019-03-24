@@ -70,5 +70,6 @@ PaletteListItem.propTypes = {
   project_id:  PropTypes.number,
   updated_at: PropTypes.string,
   setColors: PropTypes.func,
-  setLockedColors: PropTypes.func
+  setLockedColors: PropTypes.func,
+  setModal: PropTypes.func
 };

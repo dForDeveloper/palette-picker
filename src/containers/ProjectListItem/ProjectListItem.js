@@ -4,6 +4,7 @@ import folder from '../../icons/folder.svg';
 import editdark from '../../icons/editdark.svg';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { getPalettes } from '../../thunks/getPalettes';
 
 export class ProjectListItem extends Component {
   toggleOpen = async () => {
@@ -41,9 +42,11 @@ export class ProjectListItem extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
+  getPalettes: (id) => dispatch(getPalettes(id)),
   setModal: (isDisplayed, modalType, currentName, id) => {
     dispatch(setModal(isDisplayed, modalType, currentName, id))
-  }
+  },
+
 });
 
 export default connect(null, mapDispatchToProps)(ProjectListItem);
