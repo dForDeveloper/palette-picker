@@ -1,6 +1,7 @@
 export const fetchData = async (endpoint, options = {}) => {
   const url = 'http://localhost:3001';
   const response = await fetch(url + endpoint, options);
+  if (response.status === 204) return;
   if (response.ok) {
     return await response.json();
   } else {
