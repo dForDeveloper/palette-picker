@@ -6,30 +6,29 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 export class ProjectListItem extends Component {
-  toggleOpen = async (event) => {
-    const { id } = event.target.closest('li').dataset;
-    if (!this.props.palettes) await this.props.getPalettes(id);
+  toggleOpen = async () => {
+    const { palettes, id } = this.props;
+    if (!palettes) await this.props.getPalettes(id);
     this.props.setActiveProject(id)
     this.props.toggleDropDown();
   };
 
   setModal = () => {
-    this.props.setModal(true, 'project', this.props.name);
+    const { name, id, setModal } = this.props;
+    setModal(true, 'project', name, id);
   }
 
   render () {
-    const { id, name } = this.props;
+    const { name } = this.props;
     return (
-      <li data-id={id} className="Menu--list-item">
+      <li className="Menu--list-item">
         <img
           src={folder}
           alt="folder icon"
           className="Menu--icon-folder"
           onClick={this.toggleOpen} 
         />
-        <p className="Menu--project-name" onClick={this.toggleOpen}>
-          {name}
-        </p>
+        <p className="Menu--project-name" onClick={this.toggleOpen}>{name}</p>
         <img
           src={editdark}
           alt="edit icon"
@@ -42,8 +41,8 @@ export class ProjectListItem extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  setModal: (isDisplayed, type, text) => {
-    dispatch(setModal(isDisplayed, type, text))
+  setModal: (isDisplayed, modalType, currentName, id) => {
+    dispatch(setModal(isDisplayed, modalType, currentName, id))
   }
 });
 

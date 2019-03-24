@@ -3,24 +3,35 @@ import PropTypes from 'prop-types';
 
 export class EditModal extends Component {
   state = {
-    textInput: '',
+    editedName: '',
   };
 
   componentDidMount() {
-    this.setState({ textInput: this.props.text });
+    this.setState({ editedName: this.props.currentName });
   }
 
   handleChange = (event) => {
-    this.setState({ textInput: event.target.value });
+    this.setState({ editedName: event.target.value });
   };
 
   handleClick = () => {
-
+    const { modalType, id } = this.props;
+    if (modalType === 'project') {
+      this.props.deleteProject(id);
+    } else if (modalType === 'palette') {
+      this.props.deletePalette(id);
+    }
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // const { modalType } = this.props;
+    const { editedName } = this.state;
+    const { modalType } = this.props;
+    if (modalType === 'project') {
+      this.props.patchProject(editedName);
+    } else if (modalType === 'palette') {
+      this.props.patchPalette(editedName);
+    }
   }
 
   render() {
@@ -30,7 +41,7 @@ export class EditModal extends Component {
         <input
           className="Modal--input"
           placeholder={`${this.props.modalType} name`}
-          value={this.state.textInput}
+          value={this.state.editedName}
           onChange={this.handleChange}
           required 
         />
@@ -46,5 +57,6 @@ export class EditModal extends Component {
 EditModal.propTypes = {
   isDisplayed: PropTypes.bool,
   name: PropTypes.string,
-  text: PropTypes.string
+  text: PropTypes.string,
+  id: PropTypes.number
 }
