@@ -1,47 +1,60 @@
-import React from 'react';
-import { setColors, setLockedColors } from '../../actions';
+import React, { Component } from 'react';
+import { setColors, setLockedColors, setModal } from '../../actions';
 import { connect } from 'react-redux';
 import editlight from '../../icons/editlight.svg';
 import PropTypes from 'prop-types';
 
-export const PaletteListItem = (props) => {
-  const { name, color1, color2, color3, color4, color5 } = props;
-  const colors = [color1, color2, color3, color4, color5];
-  const paletteRectangle = colors.map(color => {
+export class PaletteListItem extends Component {
+  setModal = () => {
+    this.props.setModal(true, 'palette', this.props.name);
+  }
+
+  renderPaletteRectangle = (colors) => {
+    return colors.map(color => {
+      return (
+        <div
+          style={{ backgroundColor: color }}
+          className="Menu--palette-square"
+          key={color}
+        ></div>
+      );
+    });
+  }
+
+  render() {
+    const { name, color1, color2, color3, color4, color5 } = this.props;
+    const colors = [color1, color2, color3, color4, color5];
     return (
-      <div
-        style={{ backgroundColor: color }}
-        className="Menu--palette-square"
-        key={color}
-      ></div>
+      <li>
+        <p className="Menu--palette-name">
+          {name}
+        </p>
+        <img
+          src={editlight}
+          alt="edit icon"
+          className="Menu--icon-edit-light"
+          onClick={this.setModal}
+        />
+        <span
+          className="Menu--palette-span"
+          onClick={() => {
+            this.props.setColors(colors);
+            this.props.setLockedColors([]);
+          }}
+        >
+          {this.renderPaletteRectangle(colors)}
+        </span>
+      </li>
     );
-  });
-  return (
-    <li>
-      <p className="Menu--palette-name">
-        {name}
-      </p>
-      <img
-        src={editlight}
-        alt="edit icon"
-        className="Menu--icon-edit-light"
-      />
-      <span
-        className="Menu--palette-span"
-        onClick={() => {
-          props.setColors(colors);
-          props.setLockedColors([]);
-        }}
-      >
-        {paletteRectangle}
-      </span>
-    </li>
-  );
-};
+  }
+}
 
 export const mapDispatchToProps = (dispatch) => ({
   setColors: (colors) => dispatch(setColors(colors)),
-  setLockedColors: (lockedColors) => dispatch(setLockedColors(lockedColors))
+  setLockedColors: (lockedColors) => dispatch(setLockedColors(lockedColors)),
+  setModal: (isDisplayed, type, name) => {
+    dispatch(setModal(isDisplayed, type, name))
+  }
 });
 
 export default connect(null, mapDispatchToProps)(PaletteListItem);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ProjectListItem } from '../../components/ProjectListItem/ProjectListItem';
+import ProjectListItem from '..//ProjectListItem/ProjectListItem';
+import { setModal } from '../../actions';
 import { getPalettes } from '../../thunks/getPalettes';
 import PropTypes from 'prop-types';
 import PaletteListItem from '../PaletteListItem/PaletteListItem';
@@ -13,7 +14,7 @@ export class Menu extends Component {
   };
 
   toggleModal = () => {
-    this.props.toggleModal();
+    this.props.setModal(true, 'save');
     this.setState({
       activeProjectID: null,
       menuHeader: 'all projects'
@@ -58,7 +59,7 @@ export class Menu extends Component {
       return project.id === parseInt(id);
     }).name;
     this.setState({
-      activeProjectID: id ,
+      activeProjectID: id,
       menuHeader: newHeader
     });
   }
@@ -89,7 +90,8 @@ export const mapStateToProps = (state) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  getPalettes: (id) => dispatch(getPalettes(id))
+  getPalettes: (id) => dispatch(getPalettes(id)),
+  setModal: (isDisplayed, type) => dispatch(setModal(isDisplayed, type))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Menu);
@@ -97,5 +99,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(Menu);
 Menu.propTypes = {
   projects: PropTypes.array,
   getPalettes: PropTypes.func,
-  toggleModal: PropTypes.func
+  setModal: PropTypes.func
 };

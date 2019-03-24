@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ColorSection from '../ColorSection/ColorSection';
 import SaveModal from '../SaveModal/SaveModal';
+import { EditModal } from '../EditModal/EditModal';
 import Menu from '../../containers/Menu/Menu';
-import { setColors } from '../../actions';
 import { fetchProjects } from '../../thunks/fetchProjects';
 import PropTypes from 'prop-types';
+import { setColors, setModal } from '../../actions';
 
 export class App extends Component {
   state = {
-    menuDisplayed: false,
-    modalDisplayed: false
+    menuDisplayed: false
   };
 
   componentDidMount() {
@@ -53,12 +53,13 @@ export class App extends Component {
     this.setState({ menuDisplayed: !this.state.menuDisplayed });
   };
   
-  toggleModal = () => {
-    this.setState({ modalDisplayed: !this.state.modalDisplayed });
+  closeModals = () => {
+    this.props.setModal(false);
   };
 
   render() {
-    const { menuDisplayed, modalDisplayed } = this.state;
+    const { menuDisplayed } = this.state;
+    const { modal } = this.props;
     const gridTemplateColumns = menuDisplayed ? '1fr 248px' : '1fr';
     return (
       <div className="App">
@@ -71,11 +72,13 @@ export class App extends Component {
         </header>
         <main className="main" style={{ gridTemplateColumns }}>
           <div className="main--div">{this.renderColors()}</div>
-          {menuDisplayed && <Menu key="menu" toggleModal={this.toggleModal} />}
-          {modalDisplayed && <SaveModal toggleModal={this.toggleModal} />}
+          {menuDisplayed && <Menu key="menu" />}
+          {modal.name === 'save' && <SaveModal />}
+          {(modal.name === 'project' || modal.name === 'palette') && 
+            <EditModal {...modal} />}
         </main>
-        {modalDisplayed && (
-          <div className="App--overlay" onClick={this.toggleModal} />
+        {modal.isDisplayed && (
+          <div className="App--overlay" onClick={this.closeModals} />
         )}
       </div>
     );
@@ -85,12 +88,14 @@ export class App extends Component {
 export const mapStateToProps = state => ({
   colors: state.colors,
   lockedColors: state.lockedColors,
-  projects: state.projects
+  projects: state.projects,
+  modal: state.modal
 });
 
 export const mapDispatchToProps = dispatch => ({
   setColors: colors => dispatch(setColors(colors)),
-  fetchProjects: () => dispatch(fetchProjects())
+  fetchProjects: () => dispatch(fetchProjects()),
+  setModal: (isDisplayed) => dispatch(setModal(isDisplayed))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
@@ -99,6 +104,8 @@ App.propTypes = {
   colors: PropTypes.array,
   lockedColors: PropTypes.array,
   projects: PropTypes.array,
+  modal: PropTypes.object,
   setColors: PropTypes.func,
+  setModal: PropTypes.func,
   fetchProjects: PropTypes.func
 };
