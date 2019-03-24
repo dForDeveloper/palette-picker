@@ -2,14 +2,17 @@ export const projectsReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_PROJECTS':
       return action.projects;
-    case 'SET_PALETTES':
-      const newState =  state.map(project => {
-        if (project.id === parseInt(action.id)) {
-          return { ...project, palettes: action.palettes }
+    case 'REMOVE_PROJECT':
+      return state.filter(project => {
+        return project.id !== action.id;
+      });
+    case 'UPDATE_PROJECTS':
+      return state.map(project => {
+        if (project.id === action.id) {
+          return { ...project, name: action.editedName };
         }
         return project;
       });
-      return newState;
     default:
       return state;
   }

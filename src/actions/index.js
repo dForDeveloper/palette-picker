@@ -23,9 +23,9 @@ export const setError = (message) => ({
   message
 });
 
-export const setPalettes = (id, palettes) => ({
+export const setPalettes = (projectID, palettes) => ({
   type: 'SET_PALETTES',
-  id,
+  projectID,
   palettes
 });
 
@@ -40,4 +40,15 @@ export const setModal = (
   modalType,
   currentName,
   id
+});
+
+export const removeProject = (id) => ({
+  type: 'REMOVE_PROJECT',
+  id
+});
+
+export const updateProjects = (id, editedName) => ({
+  type: 'UPDATE_PROJECTS',
+  id,
+  editedName
 });
