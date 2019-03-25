@@ -20,11 +20,11 @@ export class EditModal extends Component {
   };
 
   handleClick = () => {
-    const { modalType, id } = this.props;
+    const { modalType, projectID, paletteID } = this.props;
     if (modalType === 'project') {
-      this.props.deleteProject(id);
+      this.props.deleteProject(projectID);
     } else if (modalType === 'palette') {
-      this.props.deletePalette(id);
+      this.props.deletePalette(projectID, paletteID);
     }
   }
 
@@ -68,7 +68,9 @@ export const mapDispatchToProps = (dispatch) => ({
     dispatch(patchPalette(projectID, paletteID, editedName))
   },
   deleteProject: (id) => dispatch(deleteProject(id)),
-  deletePalette: (id) => dispatch(deletePalette(id))
+  deletePalette: (projectID, paletteID) => {
+    dispatch(deletePalette(projectID, paletteID))
+  }
 });
 
 export default connect(null, mapDispatchToProps)(EditModal);
