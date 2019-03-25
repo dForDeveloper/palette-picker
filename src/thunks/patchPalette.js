@@ -1,14 +1,13 @@
-import { setError, toggleLoading, setModal } from '../actions';
+import { setError, toggleLoading, setModal, updatePalette } from '../actions';
 import { fetchData, createOptions } from '../utils/api';
-import { getPalettes } from './getPalettes';
 
-export const patchPalette = (projectID, paletteID, editedName) => {
+export const patchPalette = (projectID, paletteID, name) => {
   return async (dispatch) => {
     dispatch(toggleLoading(true));
     try {
-      const options = createOptions('PATCH', { id: paletteID, editedName });
+      const options = createOptions('PATCH', { name });
       await fetchData(`/api/v1/palettes/${paletteID}`, options);
-      await dispatch(getPalettes(projectID));
+      dispatch(updatePalette(projectID, paletteID, name));
       dispatch(setModal(false));
     } catch (error) {
       dispatch(setError('Error updating palette: ' + error.message));
