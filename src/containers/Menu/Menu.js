@@ -8,8 +8,7 @@ import PaletteListItem from '../PaletteListItem/PaletteListItem';
 export class Menu extends Component {
   state = {
     activeProjectID: null,
-    dropDownDisplayed: false,
-    menuHeader: 'select a project'
+    dropDownDisplayed: false
   };
 
   toggleModal = () => {
@@ -46,18 +45,18 @@ export class Menu extends Component {
   }
 
   setActiveProject = (id) => {
-    const { projects } = this.props;
-    const newHeader = projects.find(project => {
-      return project.id === parseInt(id);
-    }).name;
-    this.setState({
-      activeProjectID: id,
-      menuHeader: newHeader
-    });
+    this.setState({ activeProjectID: id });
   }
 
   render() {
-    const { dropDownDisplayed, menuHeader } = this.state;
+    const { dropDownDisplayed, activeProjectID } = this.state;
+    const foundProject = this.props.projects.find(project => {
+      return project.id === activeProjectID;
+    });
+    let menuHeader = 'select a project';
+    if (foundProject) {
+      menuHeader = foundProject.name;
+    }
     return (
       <section className="Menu">
         <header className="Menu--header" onClick={this.toggleDropDown}>
