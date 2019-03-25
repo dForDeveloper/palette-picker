@@ -9,7 +9,7 @@ export class Menu extends Component {
   state = {
     activeProjectID: null,
     dropDownDisplayed: false,
-    menuHeader: 'all projects'
+    menuHeader: 'select a project'
   };
 
   toggleModal = () => {
@@ -19,9 +19,10 @@ export class Menu extends Component {
   renderPaletteList = () => {
     const { palettes } = this.props;
     const { activeProjectID } = this.state;
+    if (!palettes[activeProjectID]) return;
     if (activeProjectID) {
       return palettes[activeProjectID].map(palette => {
-        return <PaletteListItem key={palette.created_at} {...palette} />
+        return <PaletteListItem key={palette.id} {...palette} />
       });
     }
   };
