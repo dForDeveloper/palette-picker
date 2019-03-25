@@ -1,5 +1,4 @@
 import { setError, setModal } from '../actions';
-import { getProjects } from './getProjects';
 import { getPalettes } from './getPalettes';
 import { fetchData, createOptions } from '../utils/api';
 
@@ -19,7 +18,6 @@ export const postPalette = (projectID, name, colors) => {
       };
       const options = createOptions('POST', palette);
       await fetchData('/api/v1/palettes', options);
-      await dispatch(getProjects());
       await dispatch(getPalettes(projectID));
       dispatch(setModal(false));
     } catch (error) {
