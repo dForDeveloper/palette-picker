@@ -1,13 +1,13 @@
 import { setError, toggleLoading, updateProjects, setModal } from '../actions';
 import { fetchData, createOptions } from '../utils/api';
 
-export const patchProject = (id, editedName) => {
+export const patchProject = (id, name) => {
   return async (dispatch) => {
     dispatch(toggleLoading(true));
     try {
-      const options = createOptions('PATCH', { id, editedName });
+      const options = createOptions('PATCH', { name });
       await fetchData(`/api/v1/projects/${id}`, options);
-      dispatch(updateProjects(id, editedName));
+      dispatch(updateProjects(id, name));
       dispatch(setModal(false));
     } catch (error) {
       dispatch(setError('Error updating project: ' + error.message));
