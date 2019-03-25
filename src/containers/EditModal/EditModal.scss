@@ -1,0 +1,16 @@
+.Modal--button-edit {
+  @extend .Modal--button;
+
+   &:disabled {
+    background-color: #9facbd;
+    cursor: not-allowed;
+   }
+}
+
+.Modal--warning {
+  text-align: center;
+  font-size: .8rem;
+  position: absolute;
+  color: #ff0000;
+  width: 256px;
+}

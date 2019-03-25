@@ -40,6 +40,13 @@ export class EditModal extends Component {
   }
 
   render() {
+    const { projects, currentName, modalType } = this.props;
+    const saveIsDisabled = projects
+      .filter(project => {
+        return project.name !== currentName;
+      })
+      .map(project => project.name)
+      .includes(this.state.editedName) && modalType === 'project';
     return (
       <form className="Modal" onSubmit={this.handleSubmit}>
         <h4 className="Modal--h4">{`edit ${this.props.modalType}`}</h4>
@@ -51,7 +58,14 @@ export class EditModal extends Component {
           autoFocus={true}
           required 
         />
-        <input type="submit" value="save" className="Modal--button" />
+        {saveIsDisabled && 
+          <p className="Modal--warning">projects cannot have the same name</p>}
+        <input
+          type="submit"
+          value="save"
+          className="Modal--button-edit"
+          disabled={saveIsDisabled}
+        />
         <button className="Modal--button" onClick={this.handleClick}>
           delete
         </button>
@@ -73,12 +87,16 @@ export const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export default connect(null, mapDispatchToProps)(EditModal);
+export const mapStateToProps = (state) => ({
+  projects: state.projects
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditModal);
 
 EditModal.propTypes = {
   isDisplayed: PropTypes.bool,
-  name: PropTypes.string,
-  text: PropTypes.string,
+  modalType: PropTypes.string,
+  currentName: PropTypes.string,
   projectID: PropTypes.number,
   paletteID: PropTypes.number,
   patchProject: PropTypes.func,
