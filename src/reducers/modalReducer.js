@@ -1,8 +1,9 @@
 const initialState = {
   isDisplayed: false,
-  name: null,
-  text: null,
-  id: null
+  modalType: null,
+  currentName: null,
+  projectID: null,
+  paletteID: null
 }
 
 export const modalReducer = (state = initialState, action) => {
