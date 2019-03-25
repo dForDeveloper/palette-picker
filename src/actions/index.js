@@ -13,20 +13,39 @@ export const setProjects = (projects) => ({
   projects
 });
 
-export const toggleLoading = (bool) => ({
-  type: 'TOGGLE_LOADING',
-  bool
+export const addProject = (project) => ({
+  type: 'ADD_PROJECT',
+  project
 });
 
-export const setError = (message) => ({
-  type: 'SET_ERROR',
-  message
+export const updateProjects = (id, name) => ({
+  type: 'UPDATE_PROJECTS',
+  id,
+  name
+});
+
+export const removeProject = (id) => ({
+  type: 'REMOVE_PROJECT',
+  id
 });
 
 export const setPalettes = (projectID, palettes) => ({
   type: 'SET_PALETTES',
   projectID,
   palettes
+});
+
+export const updatePalette = (projectID, paletteID, name) => ({
+  type: 'UPDATE_PALETTE',
+  projectID,
+  paletteID,
+  name
+});
+
+export const removePalette = (projectID, paletteID) => ({
+  type: 'REMOVE_PALETTE',
+  projectID,
+  paletteID
 });
 
 export const setModal = (
@@ -44,13 +63,12 @@ export const setModal = (
   paletteID
 });
 
-export const removeProject = (id) => ({
-  type: 'REMOVE_PROJECT',
-  id
+export const toggleLoading = (bool) => ({
+  type: 'TOGGLE_LOADING',
+  bool
 });
 
-export const updateProjects = (id, editedName) => ({
-  type: 'UPDATE_PROJECTS',
-  id,
-  editedName
+export const setError = (message) => ({
+  type: 'SET_ERROR',
+  message
 });
