@@ -44,5 +44,19 @@ describe('fetchData', () => {
     const expected = Error('Error fetching from http://localhost:3001/fake');
     window.fetch = jest.fn(() => Promise.resolve({ ok: false }));
     await expect(fetchData('/fake')).rejects.toEqual(expected);
-  })
+  });
+});
+
+describe('createOptions', () => {
+  it('should return an options object', () => {
+    const expected = {
+      method: 'POST',
+      body: JSON.stringify({ name: 'my project' }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const result = createOptions('POST', { name: 'my project' });
+    expect(result).toEqual(expected);
+  });
 });
