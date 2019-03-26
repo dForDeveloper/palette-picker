@@ -1,0 +1,47 @@
+import { deletePalette } from '../deletePalette';
+import * as api from '../../utils/api';
+import {
+  setError,
+  toggleLoading,
+  setModal,
+  removePalette
+} from '../../actions';
+
+describe('deletePalette', () => {
+  const mockDispatch = jest.fn();
+  const thunk = deletePalette(1, 2);
+  api.fetchData = jest.fn();
+
+  beforeEach(() => {
+    thunk(mockDispatch);
+  });
+
+  it('should dispatch toggleLoading(true)', () => {
+    const expected = toggleLoading(true);
+    expect(mockDispatch).toHaveBeenCalledWith(expected);
+  });
+
+  it('should dispatch removePalette(1, 2)', () => {
+    const expected = removePalette(1, 2);
+    expect(mockDispatch).toHaveBeenCalledWith(expected);
+  });
+
+  it('should dispatch setModal(false)', () => {
+    const expected = setModal(false);
+    expect(mockDispatch).toHaveBeenCalledWith(expected);    
+  });
+
+  it('should dispatch toggleLoading(false)', () => {
+    const expected = toggleLoading(false);
+    expect(mockDispatch).toHaveBeenCalledWith(expected);
+  });
+
+  it('should dispatch setError if an error is caught', async () => {
+    api.fetchData = jest.fn(() => {
+      throw new Error('some message');
+    });
+    await thunk(mockDispatch);
+    const expected = setError('Error deleting palette: some message');
+    expect(mockDispatch).toHaveBeenCalledWith(expected);    
+  });
+});
