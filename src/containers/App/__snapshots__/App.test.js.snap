@@ -1,0 +1,268 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App render should match the snapshot 1`] = `
+<div
+  className="App"
+>
+  <h1
+    className="App--h1"
+  >
+    palette picker
+  </h1>
+  <header>
+    <button
+      className="header--button"
+      onClick={[Function]}
+    >
+      generate palette
+    </button>
+    <div
+      className="header--menu"
+      onClick={[Function]}
+    />
+  </header>
+  <main
+    className="main"
+    style={
+      Object {
+        "gridTemplateColumns": "1fr",
+      }
+    }
+  >
+    <div
+      className="main--div"
+    >
+      <Connect(ColorSection)
+        color="#aabbcc"
+        index={0}
+        key="#aabbcc"
+      />
+      <Connect(ColorSection)
+        color="#bbccdd"
+        index={1}
+        key="#bbccdd"
+      />
+      <Connect(ColorSection)
+        color="#ccddee"
+        index={2}
+        key="#ccddee"
+      />
+      <Connect(ColorSection)
+        color="#778899"
+        index={3}
+        key="#778899"
+      />
+      <Connect(ColorSection)
+        color="#112233"
+        index={4}
+        key="#112233"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`App render should match the snapshot when menuDisplayed is true 1`] = `
+<div
+  className="App"
+>
+  <h1
+    className="App--h1"
+  >
+    palette picker
+  </h1>
+  <header>
+    <button
+      className="header--button"
+      onClick={[Function]}
+    >
+      generate palette
+    </button>
+    <div
+      className="header--menu"
+      onClick={[Function]}
+    />
+  </header>
+  <main
+    className="main"
+    style={
+      Object {
+        "gridTemplateColumns": "1fr 248px",
+      }
+    }
+  >
+    <div
+      className="main--div"
+    >
+      <Connect(ColorSection)
+        color="#aabbcc"
+        index={0}
+        key="#aabbcc"
+      />
+      <Connect(ColorSection)
+        color="#bbccdd"
+        index={1}
+        key="#bbccdd"
+      />
+      <Connect(ColorSection)
+        color="#ccddee"
+        index={2}
+        key="#ccddee"
+      />
+      <Connect(ColorSection)
+        color="#778899"
+        index={3}
+        key="#778899"
+      />
+      <Connect(ColorSection)
+        color="#112233"
+        index={4}
+        key="#112233"
+      />
+    </div>
+    <Connect(Menu)
+      key="menu"
+    />
+  </main>
+</div>
+`;
+
+exports[`App render should match the snapshot when modalType is palette 1`] = `
+<div
+  className="App"
+>
+  <h1
+    className="App--h1"
+  >
+    palette picker
+  </h1>
+  <header>
+    <button
+      className="header--button"
+      onClick={[Function]}
+    >
+      generate palette
+    </button>
+    <div
+      className="header--menu"
+      onClick={[Function]}
+    />
+  </header>
+  <main
+    className="main"
+    style={
+      Object {
+        "gridTemplateColumns": "1fr",
+      }
+    }
+  >
+    <div
+      className="main--div"
+    >
+      <Connect(ColorSection)
+        color="#aabbcc"
+        index={0}
+        key="#aabbcc"
+      />
+      <Connect(ColorSection)
+        color="#bbccdd"
+        index={1}
+        key="#bbccdd"
+      />
+      <Connect(ColorSection)
+        color="#ccddee"
+        index={2}
+        key="#ccddee"
+      />
+      <Connect(ColorSection)
+        color="#778899"
+        index={3}
+        key="#778899"
+      />
+      <Connect(ColorSection)
+        color="#112233"
+        index={4}
+        key="#112233"
+      />
+    </div>
+    <Connect(EditModal)
+      currentName="my palette"
+      isDisplayed={true}
+      modalType="palette"
+      paletteID={1}
+      projectID={1}
+    />
+  </main>
+  <div
+    className="App--overlay"
+    onClick={[Function]}
+  />
+</div>
+`;
+
+exports[`App render should match the snapshot when modalType is save 1`] = `
+<div
+  className="App"
+>
+  <h1
+    className="App--h1"
+  >
+    palette picker
+  </h1>
+  <header>
+    <button
+      className="header--button"
+      onClick={[Function]}
+    >
+      generate palette
+    </button>
+    <div
+      className="header--menu"
+      onClick={[Function]}
+    />
+  </header>
+  <main
+    className="main"
+    style={
+      Object {
+        "gridTemplateColumns": "1fr",
+      }
+    }
+  >
+    <div
+      className="main--div"
+    >
+      <Connect(ColorSection)
+        color="#aabbcc"
+        index={0}
+        key="#aabbcc"
+      />
+      <Connect(ColorSection)
+        color="#bbccdd"
+        index={1}
+        key="#bbccdd"
+      />
+      <Connect(ColorSection)
+        color="#ccddee"
+        index={2}
+        key="#ccddee"
+      />
+      <Connect(ColorSection)
+        color="#778899"
+        index={3}
+        key="#778899"
+      />
+      <Connect(ColorSection)
+        color="#112233"
+        index={4}
+        key="#112233"
+      />
+    </div>
+    <Connect(Modal) />
+  </main>
+  <div
+    className="App--overlay"
+    onClick={[Function]}
+  />
+</div>
+`;

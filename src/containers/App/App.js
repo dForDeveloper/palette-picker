@@ -82,15 +82,15 @@ export class App extends Component {
   }
 }
 
-export const mapStateToProps = state => ({
+export const mapStateToProps = (state) => ({
   colors: state.colors,
   lockedColors: state.lockedColors,
   projects: state.projects,
   modal: state.modal
 });
 
-export const mapDispatchToProps = dispatch => ({
-  setColors: colors => dispatch(setColors(colors)),
+export const mapDispatchToProps = (dispatch) => ({
+  setColors: (colors) => dispatch(setColors(colors)),
   getProjects: () => dispatch(getProjects()),
   setModal: (isDisplayed) => dispatch(setModal(isDisplayed))
 });
