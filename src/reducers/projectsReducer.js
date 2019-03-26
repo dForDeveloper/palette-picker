@@ -8,7 +8,7 @@ export const projectsReducer = (state = [], action) => {
       return state.filter(project => {
         return project.id !== action.id;
       });
-    case 'UPDATE_PROJECTS':
+    case 'UPDATE_PROJECT':
       return state.map(project => {
         if (project.id === action.id) {
           return { ...project, name: action.name };
