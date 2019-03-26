@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorSection render should match the snapshot when the color is dark/locked 1`] = `
+<section
+  className="section--locked-true-true"
+  id="#000000"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#000000",
+    }
+  }
+>
+  <h3
+    className="h3--dark-true"
+  >
+    #000000
+  </h3>
+</section>
+`;
+
+exports[`ColorSection render should match the snapshot when the color is dark/unlocked 1`] = `
+<section
+  className="section--locked-false-true"
+  id="#000000"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#000000",
+    }
+  }
+>
+  <h3
+    className="h3--dark-true"
+  >
+    #000000
+  </h3>
+</section>
+`;
+
+exports[`ColorSection render should match the snapshot when the color is light/locked 1`] = `
+<section
+  className="section--locked-true-false"
+  id="#ffffff"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#ffffff",
+    }
+  }
+>
+  <h3
+    className="h3--dark-false"
+  >
+    #ffffff
+  </h3>
+</section>
+`;
+
+exports[`ColorSection render should match the snapshot when the color is light/unlocked 1`] = `
+<section
+  className="section--locked-false-false"
+  id="#ffffff"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#ffffff",
+    }
+  }
+>
+  <h3
+    className="h3--dark-false"
+  >
+    #ffffff
+  </h3>
+</section>
+`;
