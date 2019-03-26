@@ -18,8 +18,8 @@ export const addProject = (project) => ({
   project
 });
 
-export const updateProjects = (id, name) => ({
-  type: 'UPDATE_PROJECTS',
+export const updateProject = (id, name) => ({
+  type: 'UPDATE_PROJECT',
   id,
   name
 });
@@ -33,6 +33,12 @@ export const setPalettes = (projectID, palettes) => ({
   type: 'SET_PALETTES',
   projectID,
   palettes
+});
+
+export const addPalette = (projectID, palette) => ({
+  type: 'ADD_PALETTE',
+  projectID,
+  palette
 });
 
 export const updatePalette = (projectID, paletteID, name) => ({

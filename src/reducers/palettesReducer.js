@@ -3,6 +3,18 @@ export const palettesReducer = (state = {}, action) => {
     case 'SET_PALETTES':
       const { projectID, palettes } = action;
       return { ...state, [projectID]: palettes };
+    case 'ADD_PALETTE':
+      if (state[action.projectID]) {
+        return {
+          ...state,
+          [action.projectID]: [...state[action.projectID], action.palette]
+        };
+      } else {
+        return {
+          ...state,
+          [action.projectID]: [action.palette]
+        };
+      }
     case 'UPDATE_PALETTE':
       const updatedPalettes = state[action.projectID].map(palette => {
         if (palette.id === action.paletteID) {
