@@ -16,8 +16,8 @@ export const postPalette = (projectID, name, colors) => {
         color5
       };
       const options = createOptions('POST', palette);
-      await fetchData('/api/v1/palettes', options);
-      dispatch(addPalette(project_id, palette));
+      const { id } = await fetchData('/api/v1/palettes', options);
+      dispatch(addPalette(project_id, { ...palette, id }));
       dispatch(setModal(false));
     } catch (error) {
       dispatch(setError('Error adding palette: ' + error.message));

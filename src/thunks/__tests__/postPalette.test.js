@@ -13,9 +13,10 @@ describe('postPalette', () => {
     color2: '#000000',
     color3: '#000000',
     color4: '#000000',
-    color5: '#000000'
+    color5: '#000000',
+    id: 1
   };
-  api.fetchData = jest.fn();
+  api.fetchData = jest.fn(() => ({ id: 1 }));
 
   beforeEach(() => {
     thunk(mockDispatch);

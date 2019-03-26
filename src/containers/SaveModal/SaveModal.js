@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { saveNewPalette } from '../../thunks/saveNewPalette';
+import { postPalette } from '../../thunks/postPalette';
+import { postProject } from '../../thunks/postProject';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -17,8 +18,15 @@ export class Modal extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const { projectName, paletteName } = this.state;
-    const { projects, colors, saveNewPalette } = this.props;
-    await saveNewPalette(projectName, paletteName, projects, colors);
+    const { projects, colors, postPalette, postProject } = this.props;
+    if (projects.some(project => project.name === projectName)) {
+      const { id: projectID } = projects.find(project => {
+        return project.name === projectName;
+      });
+      postPalette(projectID, paletteName, colors);
+    } else {
+      postProject(projectName, paletteName, colors);
+    }
   };
 
   render() {
@@ -54,8 +62,11 @@ export const mapStateToProps = (state) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  saveNewPalette: (projectName, paletteName, projects, colors) => {
-    dispatch(saveNewPalette(projectName, paletteName, projects, colors));
+  postPalette: (projectID, paletteName, colors) => {
+    dispatch(postPalette(projectID, paletteName, colors))
+  },
+  postProject: (projectName, paletteName, colors) => {
+    dispatch(postProject(projectName, paletteName, colors))
   }
 });
 
@@ -64,5 +75,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(Modal);
 Modal.propTypes = {
   colors: PropTypes.array,
   projects: PropTypes.array,
-  saveNewPalette: PropTypes.func,
+  postPalette: PropTypes.func,
+  postProject: PropTypes.func
 };
