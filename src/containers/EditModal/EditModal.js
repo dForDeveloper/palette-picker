@@ -41,12 +41,12 @@ export class EditModal extends Component {
 
   render() {
     const { projects, currentName, modalType } = this.props;
-    const saveIsDisabled = projects
+    const saveIsDisabled = modalType === 'project' && projects
       .filter(project => {
         return project.name !== currentName;
       })
       .map(project => project.name)
-      .includes(this.state.editedName) && modalType === 'project';
+      .includes(this.state.editedName);
     return (
       <form className="Modal" onSubmit={this.handleSubmit}>
         <h4 className="Modal--h4">{`edit ${this.props.modalType}`}</h4>
@@ -74,6 +74,10 @@ export class EditModal extends Component {
   }
 }
 
+export const mapStateToProps = (state) => ({
+  projects: state.projects
+});
+
 export const mapDispatchToProps = (dispatch) => ({
   patchProject: (projectID, editedName) => {
     dispatch(patchProject(projectID, editedName))
@@ -87,10 +91,6 @@ export const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export const mapStateToProps = (state) => ({
-  projects: state.projects
-});
-
 export default connect(mapStateToProps, mapDispatchToProps)(EditModal);
 
 EditModal.propTypes = {
@@ -99,6 +99,7 @@ EditModal.propTypes = {
   currentName: PropTypes.string,
   projectID: PropTypes.number,
   paletteID: PropTypes.number,
+  projects: PropTypes.array,
   patchProject: PropTypes.func,
   patchPalette: PropTypes.func,
   deleteProject: PropTypes.func,

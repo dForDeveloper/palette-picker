@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditModal render should match the snapshot is saveIsDisabled 1`] = `
+<form
+  className="Modal"
+  onSubmit={[Function]}
+>
+  <h4
+    className="Modal--h4"
+  >
+    edit project
+  </h4>
+  <input
+    autoFocus={true}
+    className="Modal--input"
+    onChange={[Function]}
+    placeholder="project name"
+    required={true}
+    value="other project"
+  />
+  <p
+    className="Modal--warning"
+  >
+    projects cannot have the same name
+  </p>
+  <input
+    className="Modal--button-edit"
+    disabled={true}
+    type="submit"
+    value="save"
+  />
+  <button
+    className="Modal--button"
+    onClick={[Function]}
+  >
+    delete
+  </button>
+</form>
+`;
+
+exports[`EditModal render should match the snapshot when modalType is palette 1`] = `
+<form
+  className="Modal"
+  onSubmit={[Function]}
+>
+  <h4
+    className="Modal--h4"
+  >
+    edit palette
+  </h4>
+  <input
+    autoFocus={true}
+    className="Modal--input"
+    onChange={[Function]}
+    placeholder="palette name"
+    required={true}
+    value="my palette"
+  />
+  <input
+    className="Modal--button-edit"
+    disabled={false}
+    type="submit"
+    value="save"
+  />
+  <button
+    className="Modal--button"
+    onClick={[Function]}
+  >
+    delete
+  </button>
+</form>
+`;
+
+exports[`EditModal render should match the snapshot when modalType is project 1`] = `
+<form
+  className="Modal"
+  onSubmit={[Function]}
+>
+  <h4
+    className="Modal--h4"
+  >
+    edit project
+  </h4>
+  <input
+    autoFocus={true}
+    className="Modal--input"
+    onChange={[Function]}
+    placeholder="project name"
+    required={true}
+    value="my project"
+  />
+  <input
+    className="Modal--button-edit"
+    disabled={false}
+    type="submit"
+    value="save"
+  />
+  <button
+    className="Modal--button"
+    onClick={[Function]}
+  >
+    delete
+  </button>
+</form>
+`;
