@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PaletteListItem render should match the snapshot 1`] = `
+<li>
+  <p
+    className="Menu--palette-name"
+  >
+    my palette
+  </p>
+  <img
+    alt="edit icon"
+    className="Menu--icon-edit-light"
+    onClick={[Function]}
+    src="editlight.svg"
+  />
+  <span
+    className="Menu--palette-span"
+    onClick={[Function]}
+  >
+    <div
+      className="Menu--palette-square"
+      key="#123456"
+      style={
+        Object {
+          "backgroundColor": "#123456",
+        }
+      }
+    />
+    <div
+      className="Menu--palette-square"
+      key="#234567"
+      style={
+        Object {
+          "backgroundColor": "#234567",
+        }
+      }
+    />
+    <div
+      className="Menu--palette-square"
+      key="#345678"
+      style={
+        Object {
+          "backgroundColor": "#345678",
+        }
+      }
+    />
+    <div
+      className="Menu--palette-square"
+      key="#456789"
+      style={
+        Object {
+          "backgroundColor": "#456789",
+        }
+      }
+    />
+    <div
+      className="Menu--palette-square"
+      key="#56789a"
+      style={
+        Object {
+          "backgroundColor": "#56789a",
+        }
+      }
+    />
+  </span>
+</li>
+`;

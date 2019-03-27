@@ -64,11 +64,9 @@ PaletteListItem.propTypes = {
   color3: PropTypes.string,
   color4: PropTypes.string,
   color5: PropTypes.string,
-  created_at: PropTypes.string,
   id: PropTypes.number,
   name: PropTypes.string,
   project_id:  PropTypes.number,
-  updated_at: PropTypes.string,
   setColors: PropTypes.func,
   setLockedColors: PropTypes.func,
   setModal: PropTypes.func
