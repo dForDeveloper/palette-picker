@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ProjectListItem from '..//ProjectListItem/ProjectListItem';
+import ProjectListItem from '../ProjectListItem/ProjectListItem';
 import { setModal } from '../../actions';
 import PropTypes from 'prop-types';
 import PaletteListItem from '../PaletteListItem/PaletteListItem';
