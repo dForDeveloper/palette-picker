@@ -258,7 +258,7 @@ exports[`App render should match the snapshot when modalType is save 1`] = `
         key="#112233"
       />
     </div>
-    <Connect(Modal) />
+    <Connect(SaveModal) />
   </main>
   <div
     className="App--overlay"
