@@ -4,7 +4,7 @@ import { postProject } from '../../thunks/postProject';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-export class Modal extends Component {
+export class SaveModal extends Component {
   state = {
     projectName: '',
     paletteName: ''
@@ -70,9 +70,9 @@ export const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default connect(mapStateToProps, mapDispatchToProps)(SaveModal);
 
-Modal.propTypes = {
+SaveModal.propTypes = {
   colors: PropTypes.array,
   projects: PropTypes.array,
   postPalette: PropTypes.func,

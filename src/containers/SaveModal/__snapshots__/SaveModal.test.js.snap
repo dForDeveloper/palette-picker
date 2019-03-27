@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SaveModal render should match the snapshot 1`] = `
+<form
+  className="Modal"
+  onSubmit={[Function]}
+>
+  <h4
+    className="Modal--h4"
+  >
+    save palette
+  </h4>
+  <input
+    autoFocus={true}
+    className="Modal--input"
+    name="projectName"
+    onChange={[Function]}
+    placeholder="project name"
+    required={true}
+    value=""
+  />
+  <input
+    className="Modal--input"
+    name="paletteName"
+    onChange={[Function]}
+    placeholder="palette name"
+    required={true}
+    value=""
+  />
+  <input
+    className="Modal--button"
+    type="submit"
+    value="save"
+  />
+</form>
+`;
