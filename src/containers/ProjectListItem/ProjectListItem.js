@@ -54,5 +54,7 @@ ProjectListItem.propTypes = {
   id: PropTypes.number,
   name: PropTypes.string,
   getPalettes: PropTypes.func,
-  setModal: PropTypes.func
+  setModal: PropTypes.func,
+  setActiveProject: PropTypes.func,
+  toggleDropDown: PropTypes.func
 };

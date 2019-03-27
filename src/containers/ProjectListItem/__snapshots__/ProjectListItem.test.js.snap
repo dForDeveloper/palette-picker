@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectListItem render should match the snapshot 1`] = `
+<li
+  className="Menu--list-item"
+>
+  <img
+    alt="folder icon"
+    className="Menu--icon-folder"
+    onClick={[Function]}
+    src="folder.svg"
+  />
+  <p
+    className="Menu--project-name"
+    onClick={[Function]}
+  >
+    my project
+  </p>
+  <img
+    alt="edit icon"
+    className="Menu--icon-edit"
+    onClick={[Function]}
+    src="editdark.svg"
+  />
+</li>
+`;
